@@ -3,6 +3,10 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 
 
+
+cnx = st.connection("snowflake")
+session = cnx.session()
+
 # Write directly to the app
 st.title(f"Customise your smoothie!")
 st.write(
@@ -21,8 +25,7 @@ ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
     , my_dataframe
 )
-cnx = st.connection("snowflake")
-session = cnx.session()
+
 
 if ingredients_list:
     ingredients_string = ''
